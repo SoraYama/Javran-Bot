@@ -1,0 +1,26 @@
+{
+  "name": "javran-bot",
+  "version": "0.0.1",
+  "description": "As interested as Javran",
+  "main": "index.ts",
+  "author": "SoraYama",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "socks-proxy-agent": "^4.0.1",
+    "telegraf": "^3.23.0",
+    "ts-node": "^7.0.1"
+  },
+  "scripts": {
+    "start": "ts-node-dev --respawn --transpileOnly index.ts"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.116",
+    "@types/node": "^10.9.4",
+    "dotenv": "^6.0.0",
+    "lodash": "^4.17.10",
+    "node": "^10.9.0",
+    "ts-node-dev": "^1.0.0-pre.26",
+    "typescript": "^3.0.3"
+  }
+}
