@@ -4,6 +4,14 @@ import Telegraf from 'telegraf';
 import assert from 'assert';
 import SocksAgent from 'socks-proxy-agent';
 import * as _ from 'lodash';
+import Logger from 'log4js';
+
+const logger = Logger.configure({
+  appenders: {
+    index: { type: 'file', filename: 'index.log' },
+  },
+  categories: { default: { appenders: ['index'], level: 'info' } }
+}).getLogger('index');
 
 assert(process.env.BOT_TOKEN, `No BOT_TOKEN env found! Set this env manually or in a '.env' file.`);
 
@@ -29,14 +37,27 @@ _.each(javWords, map => {
   });
 })
 
+javran.help(async ctx => {
+  await ctx.reply('还需要多学习一个');
+})
+
 javran.command('touch', async ctx => {
   try {
     const javStickers = await ctx.getStickerSet(`JavransStickers`);
-    console.log(javStickers);
     const len = javStickers.stickers.length;
+    logger.info(await ctx.getChat());
     await ctx.replyWithSticker(javStickers.stickers[Math.floor(Math.random() * len)].file_id);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
+    await ctx.reply('thd');
+  }
+});
+
+javran.command('birth', async ctx => {
+  try {
+    await ctx.reply('26817');
+  } catch (err) {
+    logger.error(err);
     await ctx.reply('thd');
   }
 });

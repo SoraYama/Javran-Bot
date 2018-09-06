@@ -19,6 +19,7 @@
     "@types/node": "^10.9.4",
     "dotenv": "^6.0.0",
     "lodash": "^4.17.10",
+    "log4js": "^3.0.5",
     "node": "^10.9.0",
     "ts-node-dev": "^1.0.0-pre.26",
     "typescript": "^3.0.3"

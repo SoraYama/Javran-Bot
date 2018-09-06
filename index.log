@@ -1,0 +1,7 @@
+[2018-09-06T18:59:04.829] [INFO] index - { id: 269883821,
+  first_name: '空山',
+  username: 'SoraYama',
+  type: 'private',
+  photo:
+   { small_file_id: 'AQADBQADlKgxG60ZFhAACFws1TIABDabGUzeJ5Tgnt8BAAEC',
+     big_file_id: 'AQADBQADlKgxG60ZFhAACFws1TIABCdOUxpvo36ZoN8BAAEC' } }
