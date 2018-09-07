@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  javran-bot:
+    build: .
+    image: javran
+    container_name: 'javran'
+    volumes:
+      - defaultLog:/app/logs
+
+volumes:
+  defaultLog:

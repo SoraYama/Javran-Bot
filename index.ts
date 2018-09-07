@@ -1,6 +1,8 @@
-require('dotenv').load();
+if (!process.env.BOT_TOKEN) {
+  require('dotenv').load();
+}
 
-import Telegraf from 'telegraf';
+import Telegraf, { ContextMessageUpdate } from 'telegraf';
 import assert from 'assert';
 import SocksAgent from 'socks-proxy-agent';
 import * as _ from 'lodash';
@@ -8,21 +10,30 @@ import Logger from 'log4js';
 
 const logger = Logger.configure({
   appenders: {
-    index: { type: 'file', filename: 'index.log' },
+    default: { type: 'console' },
+    logFile: { type: 'file', filename: './logs/index.log' },
   },
-  categories: { default: { appenders: ['index'], level: 'info' } }
+  categories: { default: { appenders: ['default', 'logFile'], level: 'info' } }
 }).getLogger('index');
 
 assert(process.env.BOT_TOKEN, `No BOT_TOKEN env found! Set this env manually or in a '.env' file.`);
 
 const proxy = process.env.http_proxy || process.env.https_proxy || '';
-const agent = new SocksAgent(proxy);
+logger.info('proxy: ', proxy);
 
-const javran = new Telegraf(process.env.BOT_TOKEN!, {
-  telegram: {
-    agent,
-  }
-});
+let javran: Telegraf<ContextMessageUpdate>;
+
+if (proxy) {
+  const agent = new SocksAgent(proxy);
+   javran = new Telegraf(process.env.BOT_TOKEN!, {
+    telegram: {
+      agent,
+    }
+  });
+} else {
+  javran = new Telegraf(process.env.BOT_TOKEN!);
+}
+
 
 type IJavWords = Array<[string[], string]>;
 
