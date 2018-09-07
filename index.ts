@@ -18,7 +18,7 @@ const logger = Logger.configure({
 
 assert(process.env.BOT_TOKEN, `No BOT_TOKEN env found! Set this env manually or in a '.env' file.`);
 
-const proxy = process.env.http_proxy || process.env.https_proxy || '';
+const proxy = process.env.JAVRAN_PROXY || '';
 logger.info('proxy: ', proxy);
 
 let javran: Telegraf<ContextMessageUpdate>;
